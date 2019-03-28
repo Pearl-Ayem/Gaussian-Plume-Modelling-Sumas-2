@@ -1,5 +1,5 @@
 clc
-clear all
+clear
 close all
 
 %%
@@ -45,16 +45,19 @@ class = ['A', 'B', 'C', 'D', 'E', 'F'];
 for css = 1: length(class)
     for i = 1:length(heights)
         C= gaussianPlume(em_rate, 1, Stack_Height,'stability', class(css),'plume_rise_model','Briggs', ...
-            'amb_temp', amb_temp,'stack_temp', exit_temp,'stack_diameter', Stack_Diameter, ... 
-            'stack_velocity',Exit_Velocity,'reflection', true, 'X', 10000,'Y', 0,'Z', heights(i));
+            'amb_temp', amb_temp,'stack_temp', exit_temp,'stack_diameter', Stack_Diameter,'stack_velocity',Exit_Velocity, ...
+            'reflection', true, 'X', 10000,'Y', 0,'Z', heights(i));
+        i
+        css
+        
         GLC(i,css) = C*10^3;
         
     end
 end
 
-
 for i=1:6
     figure
     plot(heights,GLC(:,i),'Linewidth',2);
+    title(class(i))
 end
 %legend({'A', 'B', 'C', 'D', 'E', 'F'});
