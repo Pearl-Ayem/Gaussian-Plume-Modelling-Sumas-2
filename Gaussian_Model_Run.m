@@ -33,7 +33,7 @@ close all
 
 
 GLC=[];
-heights=[1:1:401];
+heights=[1:25:401];
 amb_temp= 20;
 Stack_Height = 55;
 Stack_Diameter = 3;
@@ -57,6 +57,9 @@ for i=1:6
     figure
     plot(heights,GLC(:,i),'Linewidth',2);
     grid on
+    grid minor
+    ylabel('PM Concentration (\mug m^{-3})');
+    xlabel('Vertical distance (m)');
     title([{'PM concentrations against height projected at'},  
         '10 km downwind from SUMAS 2 for class ' class(i) ' conditions']);
 end
