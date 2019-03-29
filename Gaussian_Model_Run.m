@@ -33,7 +33,7 @@ close all
 
 
 GLC=[];
-heights=[0.0000000009:25:401];
+heights=[1:1:401];
 amb_temp= 20;
 Stack_Height = 55;
 Stack_Diameter = 3;
@@ -44,10 +44,10 @@ class = ['A', 'B', 'C', 'D', 'E', 'F'];
 
 for css = 1: length(class)
     for i = 1:length(heights)
-        C= gaussianPlume(em_rate, 1, Stack_Height,'stability', class(css),'plume_rise_model','Briggs', ...
-            'amb_temp', amb_temp,'stack_temp', exit_temp,'stack_diameter', Stack_Diameter, ... 
+        C= gaussianPlume(em_rate, 1, Stack_Height,'stability', class(css),'plume_rise_model','none', ...
+            'amb_temp', amb_temp,'stack_temp', exit_temp,'stack_diameter', Stack_Diameter, 'terrain','rural', ... 
             'stack_velocity',Exit_Velocity,'reflection', true, 'X', 10000,'Y', 0,'Z', heights(i));
-        GLC(i,css) = C*10^3;
+        GLC(i,css) = C*10^6;
         
     end
 end
@@ -56,5 +56,8 @@ end
 for i=1:6
     figure
     plot(heights,GLC(:,i),'Linewidth',2);
+    grid on
+    title([{'PM concentrations against height projected at'},  
+        '10 km downwind from SUMAS 2 for class ' class(i) ' conditions']);
 end
 %legend({'A', 'B', 'C', 'D', 'E', 'F'});
