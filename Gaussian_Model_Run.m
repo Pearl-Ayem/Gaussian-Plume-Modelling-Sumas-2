@@ -56,17 +56,17 @@ stabilities = {'very unstable','unstable','slightly unstable','neutral','slightl
 
 figure
 for i=1:6
-    subplot(3,2,i)
-    plot(heights,GLC(:,i),'k');
-    grid on
-    grid minor
-    ylabel('PM Conc. (\mug m^{-3})');
-    xlabel('Height (m)');
-    title(['Class ' class(i)]);
+    plot(heights,GLC(:,i),'Linewidth',1.5);
+    hold on
 end
-
-%suptitle({'PM concentrations against height projected at 10 km'}, ... 
- %   {'downwind from SUMAS 2 for different stability regimes'});
+grid on
+grid minor
+ylabel('PM Conc. (\mug m^{-3})');
+xlabel('Height (m)');
+%title(['Class ' class(i)]);
+title({'PM concentrations against height projected at 10 km', ...
+    'downwind from SUMAS 2 for different stability regimes'});
+legend(stabilities);
  
          
      
